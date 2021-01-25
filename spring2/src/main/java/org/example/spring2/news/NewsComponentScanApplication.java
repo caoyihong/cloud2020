@@ -8,8 +8,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class NewsComponentScanApplication {
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("");
-        FXNewsProvider newsProvider = (FXNewsProvider) ctx.getBean("FXNewsProvider");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:/spring.xml");
+        FXNewsProvider newsProvider = (FXNewsProvider) ctx.getBean("djNewsProvider");
         newsProvider.getAndPersistNews();
     }
 }
