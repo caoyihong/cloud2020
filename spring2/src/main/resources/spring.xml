@@ -2,6 +2,12 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
         "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
+    <bean id="foo" class="org.example.spring2.factory.Foo" >
+        <property name="barInterface">
+            <ref bean="bar"/>
+        </property>
+    </bean>
+    <bean id="bar" class="org.example.spring2.factory.StaticBarInterfaceFactory" factory-method="getInstance" />
     <bean id="djNewsProvider" class="org.example.spring2.news.FXNewsProvider">
         <constructor-arg index="0">
             <ref bean="djNewsListener"/>
