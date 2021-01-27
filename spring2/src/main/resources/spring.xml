@@ -7,7 +7,14 @@
             <ref bean="bar"/>
         </property>
     </bean>
-    <bean id="bar" class="org.example.spring2.factory.StaticBarInterfaceFactory" factory-method="getInstance" />
+    <!-- 非static工厂方法 -->
+    <bean id="barFactory" class="org.example.spring2.factory.NonStaticBarInterfaceFactory"/>
+    <bean id="bar" factory-bean="barFactory" factory-method="getInstance"/>
+    <!-- 非static工厂方法end -->
+
+    <!-- static工厂方法 -->
+    <!--<bean id="bar" class="org.example.spring2.factory.StaticBarInterfaceFactory" factory-method="getInstance" />-->
+    <!-- static工厂方法end -->
     <bean id="djNewsProvider" class="org.example.spring2.news.FXNewsProvider">
         <constructor-arg index="0">
             <ref bean="djNewsListener"/>
