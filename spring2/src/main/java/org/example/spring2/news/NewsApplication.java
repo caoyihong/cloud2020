@@ -11,8 +11,11 @@ public class NewsApplication {
     public static void main(String[] args) {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         BeanFactory container = bindViaXMLFile(beanFactory);
-        FXNewsProvider newsProvider = (FXNewsProvider) container.getBean("djNewsProvider");
-        newsProvider.getAndPersistNews();
+//        FXNewsProvider newsProvider = (FXNewsProvider) container.getBean("djNewsProvider");
+//        newsProvider.getAndPersistNews();
+        MockNewsPersister persister = (MockNewsPersister) container.getBean("mockPersister");
+        persister.persistNews();
+        persister.persistNews();
     }
 
     public static BeanFactory bindViaXMLFile(BeanDefinitionRegistry registry) {

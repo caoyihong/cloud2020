@@ -27,4 +27,16 @@
     </bean>
     <bean id="djNewsPersister" class="org.example.spring2.news.DowJonesNewsPersister">
     </bean>
+    <bean id="newsBean" class="org.example.spring2.domain.FXNewsBean" singleton="false"></bean>
+    <!-- 普通的属性注入 -->
+   <!-- <bean id="mockPersister" class="org.example.spring2.news.MockNewsPersister">
+        <property name="newsBean">
+            <ref bean="newsBean"/>
+        </property>
+    </bean>-->
+    <!-- 方法注入 -->
+    <bean id="mockPersister" class="org.example.spring2.news.MockNewsPersister">
+        <lookup-method name="getNewsBean" bean="newsBean" />
+    </bean>
+
 </beans>
