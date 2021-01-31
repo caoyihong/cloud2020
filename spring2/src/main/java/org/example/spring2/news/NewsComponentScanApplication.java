@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class NewsComponentScanApplication {
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:/spring.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:/news-spring.xml");
         FXNewsProvider newsProvider = (FXNewsProvider) ctx.getBean("djNewsProvider");
         newsProvider.getAndPersistNews();
     }

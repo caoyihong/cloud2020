@@ -35,8 +35,17 @@
         </property>
     </bean>-->
     <!-- 方法注入 -->
-    <bean id="mockPersister" class="org.example.spring2.news.MockNewsPersister">
+    <!--<bean id="mockPersister" class="org.example.spring2.news.MockNewsPersister">
         <lookup-method name="getNewsBean" bean="newsBean" />
+    </bean>-->
+    <bean id="newsBeanFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+        <property name="targetBeanName">
+            <idref bean="newsBean" />
+        </property>
     </bean>
-
+    <bean id="mockPersister" class="org.example.spring2.news.MockNewsPersister">
+        <property name="newsBeanFactory">
+            <ref bean="newsBeanFactory"/>
+        </property>
+    </bean>
 </beans>

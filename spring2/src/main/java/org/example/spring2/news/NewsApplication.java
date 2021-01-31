@@ -20,8 +20,8 @@ public class NewsApplication {
 
     public static BeanFactory bindViaXMLFile(BeanDefinitionRegistry registry) {
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(registry);
-        reader.loadBeanDefinitions("classpath:/spring.xml");
-//        return new XmlBeanFactory(new ClassPathResource("spring.xml"));
+        reader.loadBeanDefinitions("classpath:/news-spring.xml");
+//        return new XmlBeanFactory(new ClassPathResource("news-spring.xml"));
         return (BeanFactory) registry;
     }
 }
