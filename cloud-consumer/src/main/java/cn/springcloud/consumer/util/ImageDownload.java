@@ -9,12 +9,14 @@ import reactor.core.publisher.Mono;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ImageDownload {
     private static WebClient webClient = WebClient.builder().exchangeStrategies(ExchangeStrategies.builder()
@@ -22,7 +24,49 @@ public class ImageDownload {
                     .defaultCodecs()
                     .maxInMemorySize(10 * 1024 * 1024))
             .build()).build();
-    public static void main(String[] args) {
+
+    //    private static ArrayList<Integer> tmpArr = new ArrayList<>();
+    private static ArrayList<Character> tmpArr = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
+        Writer writer = new BufferedWriter(new FileWriter("D:\\tmp\\filename\\name.txt"));
+        int [] com = {1,2,3,4};
+        int k = 3;
+        char[] arr = {'0','a','b'};
+        System.out.println("\n可重复排列结果：");
+        ImageDownload imageDownload = new ImageDownload();
+        imageDownload.repeatableArrangement(k, arr, writer);
+        writer.close();
+    }
+
+
+    /**
+     * 可重复排列
+     * 类似自己和自己笛卡尔积，类似k层循环拼接的结果,元素个数[arr.len^3]
+     * @param k 选取的元素个数（k层循环）
+     * @param arr 数组
+     */
+    public void repeatableArrangement(int k,char []arr, Writer writer) throws IOException {
+        if(k==1){
+            for(int i=0;i<arr.length;i++){
+                tmpArr.add(arr[i]);
+                System.out.print(tmpArr.toString());
+                System.out.println();
+//                writer.write(tmpArr.toString());
+                tmpArr.stream().collect(Collectors.joining(""));
+                writer.write("\n");
+                tmpArr.remove(tmpArr.size()-1); //移除尾部元素
+            }
+        }else if(k >1){
+            for(int i=0;i<arr.length;i++){
+                tmpArr.add(arr[i]);
+                repeatableArrangement(k - 1, arr, writer); //不去重
+                tmpArr.remove(tmpArr.size()-1); //移除尾部元素,不能用remove(Object),因为它会移除头部出现的元素，我们这里需要移除的是尾部元素
+            }
+        }else{
+            return;
+        }
+    }
+    public static void download() {
         // 记录下开始下载时的时间
         Instant now = Instant.now();
 
