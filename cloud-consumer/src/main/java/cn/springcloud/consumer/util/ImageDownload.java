@@ -28,10 +28,12 @@ public class ImageDownload {
     //    private static ArrayList<Integer> tmpArr = new ArrayList<>();
     private static ArrayList<Character> tmpArr = new ArrayList<>();
     public static void main(String[] args) throws IOException {
-        Writer writer = new BufferedWriter(new FileWriter("D:\\tmp\\filename\\name.txt"));
-        int [] com = {1,2,3,4};
-        int k = 3;
-        char[] arr = {'0','a','b'};
+//        Writer writer = new BufferedWriter(new FileWriter("D:\\tmp\\filename\\name.txt"));
+        Writer writer = new BufferedWriter(new FileWriter("/Users/zhangni/tmp/name.txt"));
+//        int [] com = {1,2,3,4};
+        int k = 32;
+//        char[] arr = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        char[] arr = {'0','a'};
         System.out.println("\n可重复排列结果：");
         ImageDownload imageDownload = new ImageDownload();
         imageDownload.repeatableArrangement(k, arr, writer);
@@ -52,7 +54,7 @@ public class ImageDownload {
                 System.out.print(tmpArr.toString());
                 System.out.println();
 //                writer.write(tmpArr.toString());
-                tmpArr.stream().collect(Collectors.joining(""));
+                writer.write(tmpArr.stream().map(String::valueOf).collect(Collectors.joining("")));
                 writer.write("\n");
                 tmpArr.remove(tmpArr.size()-1); //移除尾部元素
             }
