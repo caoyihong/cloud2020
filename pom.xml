@@ -10,6 +10,7 @@
     <modules>
         <module>cloud-provider-payment8001</module>
         <module>cloud-consumer</module>
+        <module>i-shiro01</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 统一管理jar包版本 -->
